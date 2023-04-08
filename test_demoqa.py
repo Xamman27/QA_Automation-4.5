@@ -3,12 +3,13 @@ import os
 from selene import be, have, browser, command
 
 
-def test_demoqa(browser_setting):
+def test_submit_form(browser_setting):
     browser.open('https://demoqa.com/automation-practice-form')
+
     browser.element('#firstName').should(be.blank).type('Ivan')
     browser.element('#lastName').should(be.blank).type('Ivanov')
     browser.element('#userEmail').should(be.blank).type('test@test.ru')
-    browser.element('[for="gender-radio-1"]').should(be.visible).click()
+    browser.element('[name=gender][value=Male] + label').click()
     browser.element('#userNumber').should(be.blank).type('89001000000')
 
     browser.execute_script("window.scrollBy(0, 500)")
