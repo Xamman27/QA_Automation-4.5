@@ -5,6 +5,7 @@ from selene import browser
 def browser_setting():
     browser.config.window_height = 1920
     browser.config.window_width = 1080
+    browser.quit()
     return browser
 
 

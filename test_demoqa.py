@@ -16,14 +16,19 @@ def test_submit_form(browser_setting):
 
     browser.element('#dateOfBirthInput').should(be.clickable).click()
     browser.element('.react-datepicker__month-select').should(be.clickable).click()
-    browser.element('[value="11"]').should(be.clickable).click()
+    browser.element('.react-datepicker__month-select').send_keys('December')
+    #browser.element('.react-datepicker__month-select').all('option')[11].click()
+    #browser.element('[value="11"]').should(be.clickable).click()
     browser.element('.react-datepicker__year-select').should(be.clickable).click()
     browser.element('[value="1900"]').should(be.clickable).click()
-
-    browser.element('div[class="react-datepicker__day react-datepicker__day--018"]').should(be.clickable).click()
+    browser.element(f'.react-datepicker__day--0{18}').click()
+    #browser.element('div[class="react-datepicker__day react-datepicker__day--018"]').should(be.clickable).click()
     browser.element('#subjectsInput').should(be.blank).type('eng').press_enter()
     browser.element('[for="hobbies-checkbox-2"]').should(be.clickable).click()
-    browser.element('#uploadPicture').send_keys(os.getcwd() + '/images.jpg')
+    browser.element('#uploadPicture').set_value(os.path.abspath(
+        os.path.join(os.path.dirname(__file__), 'resources/images.jpg'))
+    )
+
     browser.element("#currentAddress").should(be.blank).type('SaintP')
 
     browser.element('#fixedban').perform(command.js.remove)
